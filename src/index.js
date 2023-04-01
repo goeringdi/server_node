@@ -10,15 +10,13 @@ const server = http.createServer(async (req, res) => {
     const name = params.get('hello');
     
     if (req.url === `/hello=${name}`) {
-        if (name) {
-            if (name === "") {
-              res.statusCode = 400;
-              res.statusMessage = "Error";
-              res.setHeader = "Content-Type", "text/plain";
-              res.write("Enter a name");
-              res.end();
-              return;
-            }
+        if (name === '') {
+            res.statusCode = 400;
+            res.statusMessage = "Error";
+            res.setHeader = "Content-Type", "text/plain";
+            res.write('Enter a name')
+            res.end()
+        }
             res.statusCode = 200;
             res.statusMessage = "OK";
             res.setHeader = "Content-Type", "text/plain";
@@ -26,7 +24,6 @@ const server = http.createServer(async (req, res) => {
             res.end();
             return;
           }
-    }
     if (req.url === '/?users') {
         res.statusCode = 200;
         res.statusMessage = "OK";
@@ -34,12 +31,14 @@ const server = http.createServer(async (req, res) => {
         res.write(getUsers())
         res.end()
     }
-    if ([...params].length) {
+    if (req.url === '/') {
+
         res.statusCode = 200;
         res.statusMessage = "OK";
         res.setHeader = "Content-Type", "text/plain";
         res.write('Hello world');
         res.end();
+ 
         
         return;
     }
