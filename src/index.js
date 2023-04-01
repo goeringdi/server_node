@@ -4,27 +4,24 @@ const getUsers = require ("./modules/users");
 const hostname = "127.0.0.1";
 const port = 3003;
 
-
-
 const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, `http://${req.headers.host}`);
     const params = url.searchParams;
     const name = params.get('hello');
-
     
     if (req.url === `/hello=${name}`) {
         if (name) {
             if (name === "") {
               res.statusCode = 400;
               res.statusMessage = "Error";
-              (res.setHeader = "Content-Type"), "text/plain";
+              res.setHeader = "Content-Type", "text/plain";
               res.write("Enter a name");
               res.end();
               return;
             }
             res.statusCode = 200;
             res.statusMessage = "OK";
-            (res.setHeader = "Content-Type"), "text/plain";
+            res.setHeader = "Content-Type", "text/plain";
             res.write(`Hello,${name}`);
             res.end();
             return;
