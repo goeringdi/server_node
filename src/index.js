@@ -9,7 +9,7 @@ const server = http.createServer(async (req, res) => {
     const params = url.searchParams;
     const name = params.get('hello');
     
-    if (req.url === `/hello=${name}`) {
+    if (params.has('hello')) {
         if (name === '') {
             res.statusCode = 400;
             res.statusMessage = "Error";
@@ -24,6 +24,7 @@ const server = http.createServer(async (req, res) => {
             res.end();
             return;
           }
+
     if (req.url === '/?users') {
         res.statusCode = 200;
         res.statusMessage = "OK";
